@@ -1,7 +1,3 @@
-"""
-BRK: This is the Boyd Branch
-"""
-
 class Ride(object):
     def __init__(self, a, b, x, y, s, f, id):
         """
