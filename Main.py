@@ -1,12 +1,17 @@
+"""
+BRK: This is the Boyd Branch
+"""
+
+
 class Ride(object):
-    def __init__(self, a, b, x, y, s, f):
+    def __init__(self, a, b, x, y, s, f, id):
         """
         :param a: the row of the start intersection (0 ≤ a < R)
         :param b: the column of the start intersection (0 ≤ b < C )
         :param x: the row of the finish intersection (0 ≤ x < R)
         :param y: the column of the finish intersection (0 ≤ y < C )
         :param s: the earliest start (0 ≤ s < T)
-        :param f: the latest finish (0 ≤ f ≤ T), (f ≥s+|x−a|+|y−b|)
+        :param f: the latest finish (0 ≤ f ≤ T), (f ≥ s + |x − a| + |y − b|)
             ○ note that f can be equal to T – this makes the latest finish equal to the end of the simulation
         :return:
         """
@@ -16,11 +21,11 @@ class Ride(object):
         self.y = y
         self.s = s
         self.f = f
+        self.id = id
 
 
 def read_file(filename):
     """
-
     :param filename:
     :var R: number of rows of the grid (1≤R≤10000)
     :var C: number of columns of the grid (1 ≤ C ≤ 10000)
@@ -37,7 +42,7 @@ def read_file(filename):
     for i in range(N):
         # ugly but it works
         arr = list(map(int, f.readline().strip().split()))
-        rides.append(Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]))
+        rides.append(Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i))
 
 
 def main():
