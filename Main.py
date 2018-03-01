@@ -50,11 +50,13 @@ def read_file(filename):
     global R, C, F, N, B, T
     R, C, F, N, B, T = map(int, f.readline().strip().split())
     global rides
-    rides = []
+    rides = []  # sorted with earliest start times first
     for i in range(N):
         # ugly but it works
         arr = list(map(int, f.readline().strip().split()))
         rides.append(Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i))
+    rides.sort(key=lambda ride: ride.s)  # sort rides with earliest start time first
+    
     cars = []
     for i in range(F):
         cars.append(Car(0, 0, i))
