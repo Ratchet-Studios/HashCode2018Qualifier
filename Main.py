@@ -1,3 +1,6 @@
+import math
+
+
 class Ride(object):
     def __init__(self, a, b, x, y, s, f):
         """
@@ -16,6 +19,8 @@ class Ride(object):
         self.y = y
         self.s = s
         self.f = f
+        
+        self.distance = math.fabs(a - x) + math.fabs(b - y)
 
 
 def read_file(filename):
