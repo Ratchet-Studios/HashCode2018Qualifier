@@ -23,7 +23,7 @@ class Ride(object):
         self.y = y
         self.s = s
         self.f = f
-
+        
         self.id = id
 
         self.distance = distance(a, x, b, y)
@@ -49,12 +49,12 @@ def read_file(filename):
     :var T: number of steps in the simulation (1 ≤ T ≤ 109)
     :return: Nothing
     """
-
+    
     f = open(filename)
     global R, C, F, N, B, T
     R, C, F, N, B, T = map(int, f.readline().strip().split())
     global rides
-    rides = []  # sorted with earliest start times first
+    rides = []
     for i in range(N):
         # ugly but it works
         arr = list(map(int, f.readline().strip().split()))
@@ -81,8 +81,9 @@ def main():
     #     read_file(file)
 
 
-def rewrite_line(nums):
-    line = str(len(nums) - 2)
+def rewrite_line(nums, num_to_remove):
+    line = ''
+    nums.remove(num_to_remove)
     for num in nums:
         line += ' ' + num
     return line
@@ -92,17 +93,15 @@ def is_valid_file(submission_array):
     """submission_array is of the form ['vehicle1 ride1 ride2... rideN',...,'vehicleN ride1... rideN']"""
     assigned_rides = []
     if len(submission_array) != F:
-        return 0
+        return False
     for i in range(F):
-        if len(submission_array[i]) < 3:
-            submission_array[i] = i + ' 0'
-        else:
-            nums = submission_array.split()
-            for x in range(2, len(nums)):
-                if x in assigned_rides:
-                    submission_array[i] = i + ' ' + rewrite_line(nums)
-                    break
-                assigned_rides.append(x)
+        nums = submission_array[i].split()
+        for x in range(1, len(nums)):
+            if nums[x] in assigned_rides:
+                submission_array[i] = str(i+1) + ' ' + rewrite_line(nums, nums[x])
+                continue
+            assigned_rides.append(nums[x])
+    return submission_array
 
 def write_output(data):
     """
