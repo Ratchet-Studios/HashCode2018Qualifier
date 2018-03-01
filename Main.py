@@ -1,5 +1,7 @@
 def read_file(filename):
     f = open(filename)
+    several_variables = map(int, f.readline().strip().split())
+    several_more_variables = map(int, f.readline().strip().split())
 
 def main():
     pass
