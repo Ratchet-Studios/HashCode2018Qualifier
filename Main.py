@@ -81,27 +81,27 @@ def main():
     #     read_file(file)
 
 
-def rewrite_line(nums, num_to_remove):
-    line = ''
-    nums.remove(num_to_remove)
-    for num in nums:
-        line += ' ' + num
-    return line
-
-
-def is_valid_file(submission_array):
-    """submission_array is of the form ['vehicle1 ride1 ride2... rideN',...,'vehicleN ride1... rideN']"""
-    assigned_rides = []
-    if len(submission_array) != F:
-        return False
-    for i in range(F):
-        nums = submission_array[i].split()
-        for x in range(1, len(nums)):
-            if nums[x] in assigned_rides:
-                submission_array[i] = str(i+1) + ' ' + rewrite_line(nums, nums[x])
-                continue
-            assigned_rides.append(nums[x])
-    return submission_array
+# def rewrite_line(nums, num_to_remove):
+#     line = ''
+#     nums.remove(num_to_remove)
+#     for num in nums:
+#         line += ' ' + num
+#     return line
+#
+#
+# def is_valid_file(submission_array):
+#     """submission_array is of the form ['vehicle1 ride1 ride2... rideN',...,'vehicleN ride1... rideN']"""
+#     assigned_rides = []
+#     if len(submission_array) != F:
+#         return False
+#     for i in range(F):
+#         nums = submission_array[i].split()
+#         for x in range(1, len(nums)):
+#             if nums[x] in assigned_rides:
+#                 submission_array[i] = str(i+1) + ' ' + rewrite_line(nums, nums[x])
+#                 continue
+#             assigned_rides.append(nums[x])
+#     return submission_array
 
 def write_output(data):
     """
