@@ -25,7 +25,7 @@ class Ride(object):
         self.f = f
         
         self.id = id
-
+        
         self.distance = distance(a, x, b, y)
         self.s_latest = self.f - self.distance - 1  # latest time at which you can leave and still arrive in time
 
@@ -35,7 +35,6 @@ class Car(object):
         self.x = x
         self.y = y
         self.id = id
-
 
 
 def read_file(filename):
@@ -59,8 +58,8 @@ def read_file(filename):
         # ugly but it works
         arr = list(map(int, f.readline().strip().split()))
         rides.append(Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i))
-    rides.sort(key=lambda ride: ride.s)  # sort rides with earliest start time first
-
+    rides.sort(key=lambda ride: ride.distance, reverse=True)  # sort rides with earliest start time first
+    
     cars = []
     for i in range(F):
         cars.append(Car(0, 0, i))
@@ -74,8 +73,7 @@ def main():
              "Problem/d_metropolis.in",
              "Problem/e_high_bonus.in"]
     read_file(files[0])
-
-
+    
     # # For testing all the files
     # for file in files:
     #     read_file(file)
@@ -118,7 +116,8 @@ def write_output(data):
         output += item + "\n"
     output_file.write(output)
     output_file.close()
-    #test
+    # test
+
 
 if __name__ == '__main__':
     main()
