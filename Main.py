@@ -53,7 +53,9 @@ def main():
     #     read_file(file)
 
 
-
+def create_graph():
+    nodes = [[]] # nodes[lift_id][start_time] is the score that we gain from visiting this node
+    
 
 def is_valid_file(submission_array):
     """submission_array is of the form [[fi"""
