@@ -1,6 +1,5 @@
-"""
-BRK: This is the Boyd Branch
-"""
+import math
+
 
 class Ride(object):
     def __init__(self, a, b, x, y, s, f, id):
@@ -20,7 +19,11 @@ class Ride(object):
         self.y = y
         self.s = s
         self.f = f
+
         self.id = id
+
+        self.distance = math.fabs(a - x) + math.fabs(b - y)
+        self.s_latest = self.f - self.distance - 1  # latest time at which you can leave and still arrive in time
 
 
 class Car(object):
@@ -46,11 +49,14 @@ def read_file(filename):
     f = open(filename)
     global R, C, F, N, B, T
     R, C, F, N, B, T = map(int, f.readline().strip().split())
-    rides = []
+    global rides
+    rides = []  # sorted with earliest start times first
     for i in range(N):
         # ugly but it works
         arr = list(map(int, f.readline().strip().split()))
         rides.append(Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i))
+    rides.sort(key=lambda ride: ride.s)  # sort rides with earliest start time first
+
     cars = []
     for i in range(F):
         cars.append(Car(0, 0, i))
@@ -65,11 +71,34 @@ def main():
              "Problem/e_high_bonus.in"]
     read_file(files[0])
 
+
     # # For testing all the files
     # for file in files:
     #     read_file(file)
 
 
+def rewrite_line(nums):
+    line = str(len(nums) - 2)
+    for num in nums:
+        line += ' ' + num
+    return line
+
+
+def is_valid_file(submission_array):
+    """submission_array is of the form ['vehicle1 ride1 ride2... rideN',...,'vehicleN ride1... rideN']"""
+    assigned_rides = []
+    if len(submission_array) != F:
+        return 0
+    for i in range(F):
+        if len(submission_array[i]) < 3:
+            submission_array[i] = i + ' 0'
+        else:
+            nums = submission_array.split()
+            for x in range(2, len(nums)):
+                if x in assigned_rides:
+                    submission_array[i] = i + ' ' + rewrite_line(nums)
+                    break
+                assigned_rides.append(x)
 
 def write_output(data):
     """
