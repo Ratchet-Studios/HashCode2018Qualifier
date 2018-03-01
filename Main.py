@@ -20,8 +20,10 @@ class Ride(object):
         self.s = s
         self.f = f
         
-        self.distance = math.fabs(a - x) + math.fabs(b - y)
         self.id = id
+
+        self.distance = math.fabs(a - x) + math.fabs(b - y)
+        self.s_latest = self.f - self.distance - 1  # latest time at which you can leave and still arrive in time
 
 
 class Car(object):
