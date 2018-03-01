@@ -41,6 +41,7 @@ class Car(object):
         self.id = id
 
 
+
 def read_file(filename):
     """
     :param filename:
@@ -64,6 +65,7 @@ def read_file(filename):
         rides.append(Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i))
     rides.sort(key=lambda ride: ride.distance, reverse=True)  # sort rides with earliest start time first
     
+    global cars
     cars = []
     for i in range(F):
         cars.append(Car(0, 0, i))
@@ -126,8 +128,7 @@ def write_output(data):
         output += item + "\n"
     output_file.write(output)
     output_file.close()
-    # test
-
+    #test
 
 if __name__ == '__main__':
     main()
