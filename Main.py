@@ -30,10 +30,11 @@ def read_file(filename):
     :var T: number of steps in the simulation (1 ≤ T ≤ 109)
     :return: Nothing
     """
-
+    
     f = open(filename)
     global R, C, F, N, B, T
     R, C, F, N, B, T = map(int, f.readline().strip().split())
+    global rides
     rides = []
     for i in range(N):
         # ugly but it works
@@ -48,17 +49,34 @@ def main():
              "d_metropolis.in",
              "e_high_bonus.in"]
     read_file(files[0])
-
-
+    
     # # For testing all the files
     # for file in files:
     #     read_file(file)
 
 
+def rewrite_line(nums):
+    line = str(len(nums) - 2)
+    for num in nums:
+        line += ' ' + num
+    return line
+
+
 def is_valid_file(submission_array):
-    """submission_array is of the form [[fi"""
-    if len(submission_array) != num_rides:
+    """submission_array is of the form ['vehicle1 ride1 ride2... rideN',...,'vehicleN ride1... rideN']"""
+    assigned_rides = []
+    if len(submission_array) != F:
         return 0
+    for i in range(F):
+        if len(submission_array[i]) < 3:
+            submission_array[i] = i + ' 0'
+        else:
+            nums = submission_array.split()
+            for x in range(2, len(nums)):
+                if x in assigned_rides:
+                    submission_array[i] = i + ' ' + rewrite_line(nums)
+                    break
+                assigned_rides.append(x)
 
 
 if __name__ == '__main__':
