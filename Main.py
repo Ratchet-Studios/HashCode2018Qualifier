@@ -1,3 +1,7 @@
+"""
+BRK: This is the Boyd Branch
+"""
+
 class Ride(object):
     def __init__(self, a, b, x, y, s, f, id):
         """
@@ -50,26 +54,38 @@ def read_file(filename):
     cars = []
     for i in range(F):
         cars.append(Car(0, 0, i))
+    f.close()
 
 
 def main():
-    files = ["a_example.in",
-             "b_should_be_easy.in",
-             "c_no_hurry.in",
-             "d_metropolis.in",
-             "e_high_bonus.in"]
+    files = ["Problem/a_example.in",
+             "Problem/b_should_be_easy.in",
+             "Problem/c_no_hurry.in",
+             "Problem/d_metropolis.in",
+             "Problem/e_high_bonus.in"]
     read_file(files[0])
-
 
     # # For testing all the files
     # for file in files:
     #     read_file(file)
 
 
-def is_valid_file(submission_array):
-    """submission_array is of the form [[fi"""
-    if len(submission_array) != num_rides:
-        return 0
+
+def write_output(data):
+    """
+    :param data: a list of space-deliminated arrays: ["{M} {R0} {R1} {R2} etc", "{M} {R0} {R1} {R2} etc", etc]
+        ● M:
+            number of rides assigned to the vehicle (0 ≤ M ≤ N)
+        ● R0, R1, ..., RM-1:
+            ride numbers assigned to the vehicle, in the order in which the vehicle will performthem (0≤Ri <N)
+    :return: nothing
+    """
+    output_file = open("output.txt", "w+")
+    output = ""
+    for item in data:
+        output += item + "\n"
+    output_file.write(output)
+    output_file.close()
 
 
 if __name__ == '__main__':
