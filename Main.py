@@ -9,5 +9,5 @@ if __name__ == '__main__':
 
 
 """
-BRK: Nonsense typed to check everything is working
+BRK: Nonsense typed to check everything is working.
 """
