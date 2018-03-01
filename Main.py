@@ -2,7 +2,6 @@
 BRK: This is the Boyd Branch
 """
 
-
 class Ride(object):
     def __init__(self, a, b, x, y, s, f, id):
         """
@@ -37,6 +36,7 @@ def read_file(filename):
     """
 
     f = open(filename)
+    global R, C, F, N, B, T
     R, C, F, N, B, T = map(int, f.readline().strip().split())
     rides = []
     for i in range(N):
