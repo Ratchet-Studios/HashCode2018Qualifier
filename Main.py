@@ -28,7 +28,11 @@ class Ride(object):
         
         self.distance = distance(a, x, b, y)
         self.s_latest = self.f - self.distance - 1  # latest time at which you can leave and still arrive in time
-
+        
+    def __str__(self):
+        return 'ride from ['+str(self.a)+', '+str(self.b)+'] to ['+str(self.x)+', '+str(self.y)+'], earliest start '+str(self.s)+', latest finish '+str(self.f)
+        
+        
 
 class Car(object):
     def __init__(self, x, y, id):
@@ -65,6 +69,9 @@ def read_file(filename):
         cars.append(Car(0, 0, i))
     f.close()
 
+def luc_alg():
+    for car in cars:
+    
 
 def main():
     files = ["Problem/a_example.in",
@@ -72,7 +79,10 @@ def main():
              "Problem/c_no_hurry.in",
              "Problem/d_metropolis.in",
              "Problem/e_high_bonus.in"]
-    read_file(files[0])
+    read_file(files[1])
+    
+    for ride in rides:
+        print(ride)
     
     # # For testing all the files
     # for file in files:
