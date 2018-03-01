@@ -1,4 +1,5 @@
 import math
+import copy
 
 
 def distance(x0, x1, y0, y1):
@@ -28,18 +29,24 @@ class Ride(object):
         
         self.distance = distance(a, x, b, y)
         self.s_latest = self.f - self.distance - 1  # latest time at which you can leave and still arrive in time
-        
+    
     def __str__(self):
-        return 'ride from ['+str(self.a)+', '+str(self.b)+'] to ['+str(self.x)+', '+str(self.y)+'], earliest start '+str(self.s)+', latest finish '+str(self.f)
-        
-        
+        return 'ride from [' + str(self.a) + ', ' + str(self.b) + '] to [' + str(self.x) + ', ' + str(
+            self.y) + '], earliest start ' + str(self.s) + ', latest finish ' + str(self.f)
+
 
 class Car(object):
     def __init__(self, x, y, id):
         self.x = x
         self.y = y
         self.id = id
-
+        self.rides = []
+    
+    def to_output(self):
+        line = str(len(self.rides))
+        for ride in self.rides:
+            line += ' ' + str(ride.id)
+        return line
 
 
 def read_file(filename):
@@ -71,9 +78,21 @@ def read_file(filename):
         cars.append(Car(0, 0, i))
     f.close()
 
+
 def luc_alg():
-    for car in cars:
+    rides_remaining = copy.deepcopy(rides)
+    cnt = 0
+    output = []
+    for ride in rides:
+        cars[cnt].rides.append(ride)
+        cnt += 1
+        if (cnt == len(cars)):
+            cnt = 0
     
+    for car in cars:
+        output.append(car.to_output())
+    write_output(output)
+
 
 def main():
     files = ["Problem/a_example.in",
@@ -81,10 +100,12 @@ def main():
              "Problem/c_no_hurry.in",
              "Problem/d_metropolis.in",
              "Problem/e_high_bonus.in"]
-    read_file(files[1])
+    read_file(files[4])
     
     for ride in rides:
         print(ride)
+    
+    luc_alg()
     
     # # For testing all the files
     # for file in files:
@@ -122,13 +143,14 @@ def write_output(data):
             ride numbers assigned to the vehicle, in the order in which the vehicle will performthem (0≤Ri <N)
     :return: nothing
     """
-    output_file = open("output.txt", "w+")
+    output_file = open("output4.txt", "w+")
     output = ""
     for item in data:
         output += item + "\n"
     output_file.write(output)
     output_file.close()
-    #test
+    # test
+
 
 if __name__ == '__main__':
     main()
