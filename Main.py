@@ -19,6 +19,14 @@ class Ride(object):
         self.id = id
 
 
+class Car(object):
+    def __init__(self, x, y, id):
+        self.x = x
+        self.y = y
+        self.id = id
+
+
+
 def read_file(filename):
     """
     :param filename:
@@ -40,6 +48,9 @@ def read_file(filename):
         # ugly but it works
         arr = list(map(int, f.readline().strip().split()))
         rides.append(Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i))
+    cars = []
+    for i in range(F):
+        cars.append(Car(0, 0, i))
 
 
 def main():
