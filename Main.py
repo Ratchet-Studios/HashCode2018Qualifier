@@ -61,6 +61,7 @@ def read_file(filename):
         rides.append(Ride(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], i))
     rides.sort(key=lambda ride: ride.s)  # sort rides with earliest start time first
 
+    global cars
     cars = []
     for i in range(F):
         cars.append(Car(0, 0, i))
