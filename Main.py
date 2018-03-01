@@ -56,6 +56,7 @@ def main():
 
 
 def is_valid_file(submission_array):
+    """submission_array is of the form [[fi"""
     if len(submission_array) != num_rides:
         return 0
 
