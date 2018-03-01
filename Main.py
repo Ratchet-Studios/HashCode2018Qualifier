@@ -42,10 +42,11 @@ def read_file(filename):
 
 
 def main():
-    """
-    TODO: add the correct file names to files[]
-    """
-    files = ["example.in", "easy.in", "medium.in", "hard.in", ]
+    files = ["a_example.in",
+             "b_should_be_easy.in",
+             "c_no_hurry.in",
+             "d_metropolis.in",
+             "e_high_bonus.in"]
     read_file(files[0])
 
 
@@ -54,12 +55,11 @@ def main():
     #     read_file(file)
 
 
-
-
 def is_valid_file(submission_array):
     """submission_array is of the form [[fi"""
     if len(submission_array) != num_rides:
         return 0
+
 
 if __name__ == '__main__':
     main()
