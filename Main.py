@@ -1,6 +1,10 @@
 import math
 
 
+def distance(x0, x1, y0, y1):
+    return math.fabs(x0 - x1) + math.fabs(y0 - y1)
+
+
 class Ride(object):
     def __init__(self, a, b, x, y, s, f, id):
         """
@@ -22,7 +26,7 @@ class Ride(object):
 
         self.id = id
 
-        self.distance = math.fabs(a - x) + math.fabs(b - y)
+        self.distance = distance(a, x, b, y)
         self.s_latest = self.f - self.distance - 1  # latest time at which you can leave and still arrive in time
 
 
